@@ -1,15 +1,23 @@
 import { StatusBar } from "expo-status-bar";
-import { Text, View, ScrollView, Image } from "react-native";
 import { Redirect, router } from "expo-router";
+import { View, Text, Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { images } from "../constants";
 import CustomButton from "../components/CustomButton";
-// import { CustomButton } from '../components';
 
-export default function App() {
+import { images } from "../constants";
+// import { CustomButton, Loader } from "../components";
+import { useGlobalContext } from "../context/GlobalProvider";
+
+const Welcome = () => {
+  const { loading, isLogged } = useGlobalContext();
+
+  if (!loading && isLogged) return <Redirect href="/home" />;
+
   return (
     <SafeAreaView className="bg-primary h-full">
+      {/* <Loader isLoading={loading} /> */}
+
       <ScrollView
         contentContainerStyle={{
           height: "100%",
@@ -54,7 +62,10 @@ export default function App() {
           />
         </View>
       </ScrollView>
+
       <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
-}
+};
+
+export default Welcome;
