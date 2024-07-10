@@ -12,7 +12,7 @@ import { useGlobalContext } from "../../context/GlobalProvider";
 // import { CustomButton, FormField } from "../../components";
 
 const SignUp = () => {
-  const { setUser, setIsLogged } = useGlobalContext;
+  const { setUser, setIsLogged } = useGlobalContext();
 
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
